@@ -10,51 +10,51 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
-    
+      uses: actions/checkout@v4
+
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: '18.x'
+        node-version: '18'
         cache: 'npm'
         cache-dependency-path: |
           server/package-lock.json
           worker/package-lock.json
-    
+
     - name: Install server dependencies
       working-directory: ./server
       run: npm ci
-    
+
     - name: Build server
       working-directory: ./server
       run: npm run build
       env:
         NODE_ENV: production
-    
+
     - name: Install worker dependencies
       working-directory: ./worker
       run: npm ci
-    
+
     - name: Build worker
       working-directory: ./worker
       run: npm run build
       env:
         NODE_ENV: production
-    
+
     - name: Upload server build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: server-dist
         path: server/dist/server
         retention-days: 7
-    
+        # 可选：if-no-files-found: error|warn|ignore
+
     - name: Upload worker build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: worker-dist
         path: worker/dist/worker
         retention-days: 7
-
