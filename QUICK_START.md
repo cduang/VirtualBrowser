@@ -1,6 +1,8 @@
 # 快速上传到 GitHub
 
-你的仓库地址：**https://github.com/cduang/VirtualBrowser.git**
+你的仓库地址：
+- HTTPS: **https://github.com/cduang/VirtualBrowser.git**
+- SSH: **git@github.com:cduang/VirtualBrowser.git**（推荐，需配置 SSH keys）
 
 ## 方法一：使用批处理脚本（最简单）
 
@@ -10,7 +12,18 @@
    - 用户名：你的 GitHub 用户名（cduang）
    - 密码：使用 Personal Access Token（见下方说明）
 
-## 方法二：使用 Git Bash 或命令提示符
+## 方法二：使用 SSH Keys（推荐，更安全方便）
+
+1. **配置 SSH keys**（只需一次）：
+   - 运行 `setup-ssh.bat` 生成 SSH key
+   - 按照提示将公钥添加到 GitHub
+   - 详细步骤见 `SSH_SETUP_GUIDE.md`
+
+2. **使用 SSH 上传**：
+   - 运行 `upload-to-github.bat`（已自动使用 SSH）
+   - 或手动执行命令（见下方）
+
+## 方法三：使用 Git Bash 或命令提示符
 
 打开 **Git Bash** 或 **命令提示符**，进入项目目录，依次执行：
 
@@ -27,8 +40,13 @@ git add .
 # 提交代码
 git commit -m "Initial commit: VirtualBrowser project"
 
-# 添加远程仓库
-git remote add origin https://github.com/cduang/VirtualBrowser.git
+# 添加远程仓库（选择一种方式）
+
+# 方式1: 使用 SSH（推荐，需先配置 SSH keys）
+git remote add origin git@github.com:cduang/VirtualBrowser.git
+
+# 方式2: 使用 HTTPS（需要 Personal Access Token）
+# git remote add origin https://github.com/cduang/VirtualBrowser.git
 
 # 推送到 GitHub
 git branch -M main

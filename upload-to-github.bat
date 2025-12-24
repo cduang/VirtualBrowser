@@ -24,10 +24,11 @@ git commit -m "Initial commit: VirtualBrowser project"
 
 echo.
 echo [4/5] 添加远程仓库...
-git remote add origin https://github.com/cduang/VirtualBrowser.git
+echo 使用 SSH 方式连接（如果已配置 SSH keys）
+git remote add origin git@github.com:cduang/VirtualBrowser.git
 if %errorlevel% neq 0 (
-    echo 警告: 远程仓库可能已存在，尝试更新...
-    git remote set-url origin https://github.com/cduang/VirtualBrowser.git
+    echo 警告: 远程仓库可能已存在，尝试更新为 SSH...
+    git remote set-url origin git@github.com:cduang/VirtualBrowser.git
 )
 
 echo.
